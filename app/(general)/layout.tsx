@@ -1,0 +1,17 @@
+
+export default function General({
+    children
+}: {
+    children: React.ReactNode;
+}) {
+    return (
+        <main className="container-fluid text-center">
+            <div className="row">
+                <div className="col-12">
+                    <h1>Presupuesto 50/30/20</h1>
+                </div>
+                {children}
+            </div>
+        </main>
+    );
+}
