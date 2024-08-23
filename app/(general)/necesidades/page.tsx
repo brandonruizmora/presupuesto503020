@@ -1,6 +1,9 @@
+import { Navbar } from "@/components"
+
 export default function presupuesto() {
   return (
     <div className="col-12">
+      <Navbar />
       <div className="row">
         <div className="col-12 col-md-4">
           <h1>GRAFICA</h1>
