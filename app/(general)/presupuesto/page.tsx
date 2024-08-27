@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function presupuesto() {
   return (
     <div className="col-12">
@@ -6,9 +8,9 @@ export default function presupuesto() {
           <h1>GRAFICA</h1>
         </div>
         <div className="col-12 col-md-8">
-          <h1><a className="text-decoration-none" href="/necesidades">NECESIDADES</a></h1>
-          <h1><a className="text-decoration-none" href="/prescindibles">PRESCINDIBLES</a></h1>
-          <h1><a className="text-decoration-none" href="/ahorros">AHORROS</a></h1>
+          <h1><Link className="text-decoration-none" href="/necesidades">NECESIDADES</Link></h1>
+          <h1><Link className="text-decoration-none" href="/prescindibles">PRESCINDIBLES</Link></h1>
+          <h1><Link className="text-decoration-none" href="/ahorros">AHORROS</Link></h1>
         </div>
       </div>
     </div>

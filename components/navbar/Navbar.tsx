@@ -1,15 +1,21 @@
+import Link from "next/link"
+
+const navItems = [
+    { path: "/necesidades", text: "Necesidades" },
+    { path: "/prescindibles", text: "Prescindibles" },
+    { path: "/ahorros", text: "Ahorros" }
+]
+
 export const Navbar = () => {
     return (
         <nav className="row">
-            <div className="col-4">
-                <a className="nav-divnk active" href="/necesidades">Necesidades</a>
-            </div>
-            <div className="col-4">
-                <a className="nav-divnk disabled" href="/prescindibles">Prescindibles</a>
-            </div>
-            <div className="col-4">
-                <a className="nav-divnk" href="/ahorros">Ahorros</a>
-            </div>
+            {
+                navItems.map(navItem => (
+                    <div key={navItem.path} className="col-4">
+                        <Link className="nav-divnk active" href={navItem.path}>{navItem.text}</Link>
+                    </div>
+                ))
+            }
         </nav>
     )
 }
