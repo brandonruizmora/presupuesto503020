@@ -14,7 +14,7 @@ export default function Home() {
             <h3 className="card-body">Año 2024</h3>
           </Link>
         </div>
-        <div className="col-12">
+        <div className="col-12 mt-5">
           <h3>
             <p>El presupuesto 50/30/20 es un método simple y popular para administrar las finanzas personales,
               diseñado para ayudarte a gestionar tus ingresos de manera equilibrada y eficiente.
