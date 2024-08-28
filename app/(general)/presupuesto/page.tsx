@@ -4,6 +4,11 @@ export default function presupuesto() {
   return (
     <div className="col-12">
       <div className="row">
+        <div className="col-12 d-flex flex-row-reverse">
+          <Link href="/agregar" className="btn btn-primary">Agregar</Link>
+        </div>
+      </div>
+      <div className="row">
         <div className="col-12 col-md-4">
           <h1>GRAFICA</h1>
         </div>
