@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const YearsPage = () => {
 
@@ -14,9 +15,9 @@ export const YearsPage = () => {
             <div className='row'>
                 {
                     years.map(year => (
-                        <div key={year} className='col-12'>
+                        <Link key={year} to={"/" + year} className='col-12'>
                             {year}
-                        </div>
+                        </Link>
                     ))
                 }
                 <div className='col-12'>
