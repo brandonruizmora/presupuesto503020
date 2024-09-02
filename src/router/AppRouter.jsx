@@ -7,7 +7,7 @@ export const AppRouter = () => {
         <>
             <Routes>
                 <Route path='/' element={<YearsPage />} />
-                <Route path='2024' element={<MonthsPage />} />
+                <Route path=':year' element={<MonthsPage />} />
             </Routes>
         </>
     )
