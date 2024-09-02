@@ -48,15 +48,15 @@ export const MonthsPage = () => {
     }
 
     return (
-        <div className='container'>
-            <div className='row'>
+        <div className="container">
+            <div className="row">
                 {
                     months.map(month => (
                         <Link key={month} to={month} className="col-12 col-md-6 col-lg-4">{month}</Link>
                     ))
                 }
-                <div className='col-12'>
-                    <button type='button' className='btn btn-dark' onClick={addNewMonth}>Nuevo mes</button>
+                <div className="col-12">
+                    <button type="button" className="btn btn-dark" onClick={addNewMonth}>Nuevo mes</button>
                 </div>
             </div>
         </div>
