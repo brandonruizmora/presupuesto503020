@@ -1,6 +1,12 @@
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 export const BudgetPage = () => {
+
+    const yearsStore = useSelector((state) => state.year);
+
+    console.log(yearsStore);
+
     return (
         <div className="container">
             <div className="row">

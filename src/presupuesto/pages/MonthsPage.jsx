@@ -13,8 +13,6 @@ export const MonthsPage = () => {
 
     const yearContext = yearsStore.find((yearStore) => yearStore.year == year);
 
-    const [months, setMonths] = useState(["Enero"]);
-
     const handleAddMonth = () => {
         dispatch(addNewMonthToYear(yearContext.id));
     }
