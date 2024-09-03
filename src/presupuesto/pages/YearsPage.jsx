@@ -17,7 +17,7 @@ export const YearsPage = () => {
             <div className="row">
                 {
                     years.map((year) => (
-                        <Link key={year.id} to={"/" + year.id} className="col-12">
+                        <Link key={year.id} to={year.id.toString()} className="col-12">
                             {year.year}
                         </Link>
                     ))

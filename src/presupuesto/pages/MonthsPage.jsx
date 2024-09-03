@@ -15,20 +15,16 @@ export const MonthsPage = () => {
 
     const [months, setMonths] = useState(["Enero"]);
 
-    console.log(yearsStore)
-
     const handleAddMonth = () => {
-        dispatch(addNewMonthToYear(yearContext.id))
+        dispatch(addNewMonthToYear(yearContext.id));
     }
-
-    console.log(yearContext.months)
 
     return (
         <div className="container">
             <div className="row">
                 {
                     yearContext.months.map(month => (
-                        <Link key={month.id} to={"/" + month.id} className="col-12 col-md-6 col-lg-4">{month.month}</Link>
+                        <Link key={month.id} to={month.id.toString()} className="col-12 col-md-6 col-lg-4">{month.month}</Link>
                     ))
                 }
                 <div className="col-12">
