@@ -7,9 +7,9 @@ export const YearsPage = () => {
     const years = useSelector((state) => state.year);
     const dispatch = useDispatch();
 
-    const addYear = function () {
+    const handleAddYear = () => {
         const newYear = years.at(years.length - 1).id + 1;
-        dispatch(addNewYear({id: newYear, year: newYear.toString()}));
+        dispatch(addNewYear({ id: newYear, year: newYear.toString(), months: [] }));
     }
 
     return (
@@ -23,7 +23,7 @@ export const YearsPage = () => {
                     ))
                 }
                 <div className="col-12">
-                    <button type="button" className="btn btn-dark" onClick={addYear}>Nuevo año</button>
+                    <button type="button" className="btn btn-dark" onClick={handleAddYear}>Nuevo año</button>
                 </div>
             </div>
         </div>

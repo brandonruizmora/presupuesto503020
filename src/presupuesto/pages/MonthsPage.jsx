@@ -1,64 +1,40 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom"
+import { addNewMonthToYear } from "../../redux/budgetSlice";
 
 export const MonthsPage = () => {
 
+    const { year } = useParams();
+
+    const yearsStore = useSelector((state) => state.year);
+
+    const dispatch = useDispatch();
+
+    const yearContext = yearsStore.find((yearStore) => yearStore.year == year);
+
     const [months, setMonths] = useState(["Enero"]);
 
-    const addNewMonth = function () {
-        const lastMonth = months.at(months.length - 1);
-        switch (lastMonth) {
-            case "Enero":
-                setMonths([...months, "Febrero"]);
-                break;
-            case "Febrero":
-                setMonths([...months, "Marzo"]);
-                break;
-            case "Marzo":
-                setMonths([...months, "Abril"]);
-                break;
-            case "Abril":
-                setMonths([...months, "Mayo"]);
-                break;
-            case "Mayo":
-                setMonths([...months, "Junio"]);
-                break;
-            case "Junio":
-                setMonths([...months, "Julio"]);
-                break;
-            case "Julio":
-                setMonths([...months, "Agosto"]);
-                break;
-            case "Agosto":
-                setMonths([...months, "Septiembre"]);
-                break;
-            case "Septiembre":
-                setMonths([...months, "Octubre"]);
-                break;
-            case "Octubre":
-                setMonths([...months, "Noviembre"]);
-                break;
-            case "Noviembre":
-                setMonths([...months, "Diciembre"]);
-                break;
+    console.log(yearsStore)
 
-            default:
-                break;
-        }
+    const handleAddMonth = () => {
+        dispatch(addNewMonthToYear(yearContext.id))
     }
+
+    console.log(yearContext.months)
 
     return (
         <div className="container">
             <div className="row">
                 {
-                    months.map(month => (
-                        <Link key={month} to={month} className="col-12 col-md-6 col-lg-4">{month}</Link>
+                    yearContext.months.map(month => (
+                        <Link key={month.id} to={"/" + month.id} className="col-12 col-md-6 col-lg-4">{month.month}</Link>
                     ))
                 }
                 <div className="col-12">
-                    <button type="button" className="btn btn-dark" onClick={addNewMonth}>Nuevo mes</button>
+                    <button type="button" className="btn btn-dark" onClick={handleAddMonth}>Nuevo mes</button>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
