@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import "./components-css.css"
-import { addNewExpenseNeeds } from "../../redux/budgetSlice";
+import { addNewExpenseNeeds, addNewExpenseWants } from "../../redux/budgetSlice";
 import { useState } from "react";
 
 export const ExpensesModal = ({ expenses, year, month }) => {
+
+    let titleAndDescription = "";
 
     const [data, setData] = useState({
         expense: "",
@@ -15,15 +17,15 @@ export const ExpensesModal = ({ expenses, year, month }) => {
 
     switch (expenses) {
         case "needs":
-            expenses = "gasto necesario"
+            titleAndDescription = "gasto necesario"
             break;
 
         case "wants":
-            expenses = "gasto no necesario"
+            titleAndDescription = "gasto no necesario"
             break;
 
         case "savings":
-            expenses = "ahorro"
+            titleAndDescription = "ahorro"
             break;
 
         default:
@@ -31,6 +33,7 @@ export const ExpensesModal = ({ expenses, year, month }) => {
     }
 
     const handleClicSubmit = () => {
+        console.log("submit")
         const idYearInt = parseInt(year);
         const idMonthInt = parseInt(month);
         setData({
@@ -38,7 +41,14 @@ export const ExpensesModal = ({ expenses, year, month }) => {
             description: "",
             total: 0
         });
-        dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+        console.log(expenses)
+        if (expenses === "needs") {
+            dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+        } else if (expenses === "wants") {
+            dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+        } else if (expenses === "savings") {
+            
+        }
     }
 
     const handleInputChange = (e) => {
@@ -67,12 +77,12 @@ export const ExpensesModal = ({ expenses, year, month }) => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">{`Agregar un nuevo ` + expenses}</h5>
+                            <h5 className="modal-title">{`Agregar un nuevo ` + titleAndDescription}</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <div className="mb-3">
-                                <label htmlFor="inputExpense" className="form-label">{expenses}</label>
+                                <label htmlFor="inputExpense" className="form-label">{titleAndDescription}</label>
                                 <input type="text" className="form-control" id="inputExpense" value={data.expense} onChange={handleInputChange} />
                             </div>
                             <div className="mb-3">

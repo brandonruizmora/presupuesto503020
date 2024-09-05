@@ -32,10 +32,14 @@ const budgetSlice = createSlice({
         addNewExpenseNeeds: (state, action) => {
             const { idYear, idMonth, expense } = action.payload;
             state.find(y => y.id === idYear).months.find(m => m.id === idMonth).needs.push({ ...expense });
+        },
+        addNewExpenseWants: (state, action) => {
+            const { idYear, idMonth, expense } = action.payload;
+            state.find(y => y.id === idYear).months.find(m => m.id === idMonth).wants.push({ ...expense });
         }
     }
 });
 
-export const { addNewYear, addNewMonthToYear, addNewExpenseNeeds } = budgetSlice.actions
+export const { addNewYear, addNewMonthToYear, addNewExpenseNeeds, addNewExpenseWants } = budgetSlice.actions
 
 export default budgetSlice.reducer

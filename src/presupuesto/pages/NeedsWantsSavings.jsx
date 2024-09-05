@@ -33,6 +33,15 @@ export const NeedsWantsSavings = () => {
 
         case "wants":
             title = "Prescindibles"
+            expenses = useSelector((state) => state.year.find(y => y.id == year).months.find(m => m.id == month).wants);
+            expenses.forEach(element => {
+                total = total - element.total
+            });
+            dataChart = [
+                ["Expense", "Amount"],
+                ["total", total],
+                ...expenses.map(item => [item.expense, item.total])
+            ]
             break;
 
         case "savings":
