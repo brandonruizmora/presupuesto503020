@@ -1,19 +1,32 @@
 import { useParams } from "react-router-dom"
-import { ExpensesModal } from "../components/ExpensesModal"
 import { useSelector } from "react-redux";
+import { Chart } from "react-google-charts";
+import { ExpensesModal } from "../components/ExpensesModal"
 
 export const NeedsWantsSavings = () => {
 
     const { year, month, budget } = useParams();
 
+    let dataChart = [];
+
     let expenses = [];
 
     let title = "";
+
+    let total = 1000;
 
     switch (budget) {
         case "needs":
             title = "Necesidades";
             expenses = useSelector((state) => state.year.find(y => y.id == year).months.find(m => m.id == month).needs);
+            expenses.forEach(element => {
+                total = total - element.total
+            });
+            dataChart = [
+                ["Expense", "Amount"],
+                ["total", total],
+                ...expenses.map(item => [item.expense, item.total])
+            ]
             break;
 
         case "wants":
@@ -28,13 +41,17 @@ export const NeedsWantsSavings = () => {
             break;
     }
 
-    console.log(expenses);
-
     return (
         <div className="container">
             <div className="row">
                 <div className="col-12 col-md-6">
-                    Grafica
+                    <Chart
+                        chartType="PieChart"
+                        data={dataChart}
+                        options={{legend: "none"}}
+                        width={"100%"}
+                        height={"400px"}
+                    />
                 </div>
                 <div className="col-12 col-md-6">
                     {title}
