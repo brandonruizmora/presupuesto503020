@@ -1,0 +1,7 @@
+.floating-button {
+    position: fixed;
+    top: 50px;
+    right: 55px;
+    border-radius: 75%;
+    padding: 3px 10px;
+}

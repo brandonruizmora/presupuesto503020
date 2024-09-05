@@ -1,4 +1,10 @@
+import { useParams } from "react-router-dom"
+import { ExpensesModal } from "../components/ExpensesModal"
+
 export const NeedsWantsSavings = () => {
+
+    const {budget} = useParams();
+
     return (
         <div className="container">
             <div className="row">
@@ -14,6 +20,7 @@ export const NeedsWantsSavings = () => {
                     </div>
                 </div>
             </div>
+            <ExpensesModal expenses={budget} />
         </div>
     )
 }
