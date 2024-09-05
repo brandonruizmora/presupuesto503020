@@ -3,7 +3,8 @@ import { ExpensesModal } from "../components/ExpensesModal"
 
 export const NeedsWantsSavings = () => {
 
-    const {budget} = useParams();
+    const {year, month, budget} = useParams();
+    
 
     return (
         <div className="container">
@@ -20,7 +21,7 @@ export const NeedsWantsSavings = () => {
                     </div>
                 </div>
             </div>
-            <ExpensesModal expenses={budget} />
+            <ExpensesModal expenses={budget} year={year} month={month} />
         </div>
     )
 }

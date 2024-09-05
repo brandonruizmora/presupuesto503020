@@ -25,13 +25,17 @@ const budgetSlice = createSlice({
                 const currentMonthCount = year.months.length;
                 if (currentMonthCount < monthsArray.length) {
                     const nextMonth = monthsArray[currentMonthCount];
-                    year.months.push({ id: currentMonthCount + 1, month: nextMonth });
+                    year.months.push({ id: currentMonthCount + 1, month: nextMonth, needs: [], wants: [], savings: [] });
                 }
             }
+        },
+        addNewExpenseNeeds: (state, action) => {
+            const { idYear, idMonth, expense } = action.payload;
+            state.find(y => y.id === idYear).months.find(m => m.id === idMonth).needs.push({ ...expense });
         }
     }
 });
 
-export const { addNewYear, addNewMonthToYear } = budgetSlice.actions
+export const { addNewYear, addNewMonthToYear, addNewExpenseNeeds } = budgetSlice.actions
 
 export default budgetSlice.reducer
