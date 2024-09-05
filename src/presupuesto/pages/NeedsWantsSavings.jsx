@@ -5,6 +5,8 @@ import { ExpensesModal } from "../components/ExpensesModal"
 
 export const NeedsWantsSavings = () => {
 
+    const { totalIncome } = useSelector(state => state.config);
+
     const { year, month, budget } = useParams();
 
     let dataChart = [];
@@ -13,7 +15,7 @@ export const NeedsWantsSavings = () => {
 
     let title = "";
 
-    let total = 1000;
+    let total = totalIncome;
 
     switch (budget) {
         case "needs":
@@ -48,7 +50,7 @@ export const NeedsWantsSavings = () => {
                     <Chart
                         chartType="PieChart"
                         data={dataChart}
-                        options={{legend: "none"}}
+                        options={{ legend: "none" }}
                         width={"100%"}
                         height={"400px"}
                     />
