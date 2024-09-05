@@ -33,7 +33,6 @@ export const ExpensesModal = ({ expenses, year, month }) => {
     }
 
     const handleClicSubmit = () => {
-        console.log("submit")
         const idYearInt = parseInt(year);
         const idMonthInt = parseInt(month);
         setData({
@@ -41,7 +40,6 @@ export const ExpensesModal = ({ expenses, year, month }) => {
             description: "",
             total: 0
         });
-        console.log(expenses)
         if (expenses === "needs") {
             dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
         } else if (expenses === "wants") {
