@@ -21,7 +21,7 @@ export const ConfigPage = () => {
     return (
         <div className="container">
             <div className="row">
-                <div className='col-12 col-md-6'>
+                <div className="col-12 col-md-6">
                     <h5>Captura tu ingreso actual neto:</h5>
                     <div className="input-group mb-3">
                         <span className="input-group-text">$</span>
