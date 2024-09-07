@@ -17,31 +17,41 @@ export const NeedsWantsSavings = () => {
 
     let total = totalIncome;
 
+    let options = {
+        legend: "none",
+        colors: ["#4CAF50"]
+    }
+
+
     switch (budget) {
         case "needs":
             title = "Necesidades";
+            total = totalIncome * .5;
             expenses = useSelector((state) => state.year.find(y => y.id == year).months.find(m => m.id == month).needs);
             expenses.forEach(element => {
                 total = total - element.total
             });
             dataChart = [
                 ["Expense", "Amount"],
-                ["total", total],
+                ["Excedente", total],
                 ...expenses.map(item => [item.expense, item.total])
-            ]
+            ];
+            options.colors.push("#2196F3");
             break;
 
         case "wants":
-            title = "Prescindibles"
+            title = "Prescindibles";
+            total = totalIncome * .3;
             expenses = useSelector((state) => state.year.find(y => y.id == year).months.find(m => m.id == month).wants);
             expenses.forEach(element => {
                 total = total - element.total
             });
             dataChart = [
                 ["Expense", "Amount"],
-                ["total", total],
+                ["Excedente", total],
                 ...expenses.map(item => [item.expense, item.total])
-            ]
+            ];
+            options.colors.push("#FF9800");
             break;
 
         case "savings":
@@ -59,7 +69,7 @@ export const NeedsWantsSavings = () => {
                     <Chart
                         chartType="PieChart"
                         data={dataChart}
-                        options={{ legend: "none" }}
+                        options={options}
                         width={"100%"}
                         height={"400px"}
                     />

@@ -24,12 +24,30 @@ export const BudgetPage = () => {
 
     savingsTotal = totalIncome - (needsTotal + wantsTotal);
 
-    const data = [
+    const dataOld = [
+        ["Presupuesto", "Total de presupuesto"],
+        ["Necesidades", (totalIncome * .5)],
+        ["Prescindibles", (totalIncome * .3)],
+        ["Ahorros", (totalIncome * .2)]
+    ];
+
+    const dataNew = [
         ["Presupuesto", "Total de presupuesto"],
         ["Necesidades", needsTotal],
         ["Prescindibles", wantsTotal],
         ["Ahorros", savingsTotal]
     ];
+
+    const diffdata = {
+        old: dataOld,
+        new: dataNew,
+    };
+
+    const options = {
+        legend: "bottom",
+        pieSliceText: "label",
+        colors: ["#2196F3", "#FF9800", "#4CAF50"]
+    }
 
     return (
         <div className="container">
@@ -37,8 +55,8 @@ export const BudgetPage = () => {
                 <div className="col-12 col-md-6">
                     <Chart
                         chartType="PieChart"
-                        data={data}
-                        options={{ legend: "none" }}
+                        diffdata={diffdata}
+                        options={options}
                         width={"100%"}
                         height={"400px"}
                     />
