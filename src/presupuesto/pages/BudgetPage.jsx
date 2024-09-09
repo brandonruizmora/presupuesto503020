@@ -68,7 +68,7 @@ export const BudgetPage = () => {
                             Necesidades
                         </Link>
                         <Link to="wants" className="col-12">
-                            Prescindible
+                            Prescindibles
                         </Link>
                         <Link to="savings" className="col-12">
                             Ahorros
