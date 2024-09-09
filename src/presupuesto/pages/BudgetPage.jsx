@@ -65,13 +65,13 @@ export const BudgetPage = () => {
                     Presupuestos
                     <div className="row">
                         <Link to="needs" className="col-12">
-                            Necesidades
+                            {`$${needsTotal} Necesidades`}
                         </Link>
                         <Link to="wants" className="col-12">
-                            Prescindibles
+                            {`$${wantsTotal} Prescindibles`}
                         </Link>
                         <Link to="savings" className="col-12">
-                            Ahorros
+                            {`$${savingsTotal} Ahorros`}
                         </Link>
 
                     </div>
