@@ -45,7 +45,7 @@ export const ExpensesModal = ({ expenses, year, month }) => {
         } else if (expenses === "wants") {
             dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
         } else if (expenses === "savings") {
-            
+
         }
     }
 
@@ -68,9 +68,7 @@ export const ExpensesModal = ({ expenses, year, month }) => {
 
     return (
         <>
-            <button type="button" className="floating-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                X
-            </button>
+            <i type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className="bi bi-plus-circle-fill floating-button"></i>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
