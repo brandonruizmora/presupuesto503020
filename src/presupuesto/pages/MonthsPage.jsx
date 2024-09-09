@@ -25,9 +25,12 @@ export const MonthsPage = () => {
                         <Link key={month.id} to={month.id.toString()} className="col-12 col-md-6 col-lg-4">{month.month}</Link>
                     ))
                 }
-                <div className="col-12">
-                    <button type="button" className="btn btn-dark" onClick={handleAddMonth}>Nuevo mes</button>
-                </div>
+                {
+                    yearContext.months.length < 12 &&
+                    <div className="col-12">
+                        <button type="button" className="btn btn-dark" onClick={handleAddMonth}>Nuevo mes</button>
+                    </div>
+                }
             </div>
         </div >
     )

@@ -9,8 +9,6 @@ export const Navbar = () => {
         7: "Julio", 8: "Agosto", 9: "Septiembre", 10: "Octubre", 11: "Noviembre", 12: "Diciembre"
     };
 
-    //let monthText = "";
-
     const parts = pathname.split("/").filter(Boolean); // Divide la cadena por "/" y elimina los elementos vacíos
     const year = parseInt(parts[0], 10); // Convierte el primer valor en número
     const month = parseInt(parts[1], 10); // Convierte el segundo valor en número
