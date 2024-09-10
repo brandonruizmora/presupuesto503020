@@ -1,6 +1,7 @@
 import Chart from "react-google-charts";
 import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
+import { formatNumber } from "../utils";
 
 export const BudgetPage = () => {
 
@@ -54,9 +55,9 @@ export const BudgetPage = () => {
             <div className="row">
                 <div className="col-12 col-md-6 col-lg-3 text-center">
                     <h4 className="mb-4">Información Presupuestos</h4>
-                    <p className="bg-needs-exp rounded px-1">Presupuesto para necesidades <br /> {`$${(totalIncome * .5)}`}</p>
-                    <p className="bg-wants-exp rounded px-1">Presupuesto para prescindibles <br /> {`$${(totalIncome * .3)}`}</p>
-                    <p className="bg-savings-exp rounded px-1">Presupuesto para el ahorro <br /> {`$${(totalIncome * .2)}`}</p>
+                    <p className="bg-needs-exp rounded px-1">Presupuesto para necesidades <br /> {`$${formatNumber(totalIncome * .5)}`}</p>
+                    <p className="bg-wants-exp rounded px-1">Presupuesto para prescindibles <br /> {`$${formatNumber(totalIncome * .3)}`}</p>
+                    <p className="bg-savings-exp rounded px-1">Presupuesto para el ahorro <br /> {`$${formatNumber(totalIncome * .2)}`}</p>
                 </div>
                 <div className="col-12 col-md-6 col-lg-5">
                     <Chart
@@ -71,15 +72,15 @@ export const BudgetPage = () => {
                     <h4 className="mb-4">Total presupuestos</h4>
                     <div className="row">
                         <Link to="needs" className="col-12 d-flex justify-content-between bg-needs rounded my-3 p-2 text-decoration-none">
-                            <span className="text-dark">{`$${needsTotal} Necesidades`}</span>
+                            <span className="text-dark">{`$${formatNumber(needsTotal)} Necesidades`}</span>
                             <i className="bi bi-arrow-right-circle text-dark fs-6"></i>
                         </Link>
                         <Link to="wants" className="col-12 d-flex justify-content-between bg-wants rounded my-3 p-2 text-decoration-none">
-                            <span className="text-dark">{`$${wantsTotal} Prescindibles`}</span>
+                            <span className="text-dark">{`$${formatNumber(wantsTotal)} Prescindibles`}</span>
                             <i className="bi bi-arrow-right-circle text-dark fs-6"></i>
                         </Link>
                         <Link to="savings" className="col-12 d-flex justify-content-between bg-savings rounded my-3 p-2 text-decoration-none">
-                            <span className="text-dark">{`$${savingsTotal} Ahorros`}</span>
+                            <span className="text-dark">{`$${formatNumber(savingsTotal)} Ahorros`}</span>
                             <i className="bi bi-arrow-right-circle text-dark fs-6"></i>
                         </Link>
 
