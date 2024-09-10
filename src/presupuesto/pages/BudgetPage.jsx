@@ -52,7 +52,13 @@ export const BudgetPage = () => {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-md-6 col-lg-3 text-center">
+                    <h4 className="mb-4">Información Presupuestos</h4>
+                    <p className="bg-needs-exp rounded px-1">Presupuesto para necesidades <br /> {`$${(totalIncome * .5)}`}</p>
+                    <p className="bg-wants-exp rounded px-1">Presupuesto para prescindibles <br /> {`$${(totalIncome * .3)}`}</p>
+                    <p className="bg-savings-exp rounded px-1">Presupuesto para el ahorro <br /> {`$${(totalIncome * .2)}`}</p>
+                </div>
+                <div className="col-12 col-md-6 col-lg-5">
                     <Chart
                         chartType="PieChart"
                         diffdata={diffdata}
@@ -61,17 +67,20 @@ export const BudgetPage = () => {
                         height={"400px"}
                     />
                 </div>
-                <div className="col-12 col-md-6">
-                    Presupuestos
+                <div className="col-12 col-md-6 col-lg-4">
+                    <h4 className="mb-4">Total presupuestos</h4>
                     <div className="row">
-                        <Link to="needs" className="col-12">
-                            {`$${needsTotal} Necesidades`}
+                        <Link to="needs" className="col-12 d-flex justify-content-between bg-needs rounded my-3 p-2 text-decoration-none">
+                            <span className="text-dark">{`$${needsTotal} Necesidades`}</span>
+                            <i className="bi bi-arrow-right-circle text-dark fs-6"></i>
                         </Link>
-                        <Link to="wants" className="col-12">
-                            {`$${wantsTotal} Prescindibles`}
+                        <Link to="wants" className="col-12 d-flex justify-content-between bg-wants rounded my-3 p-2 text-decoration-none">
+                            <span className="text-dark">{`$${wantsTotal} Prescindibles`}</span>
+                            <i className="bi bi-arrow-right-circle text-dark fs-6"></i>
                         </Link>
-                        <Link to="savings" className="col-12">
-                            {`$${savingsTotal} Ahorros`}
+                        <Link to="savings" className="col-12 d-flex justify-content-between bg-savings rounded my-3 p-2 text-decoration-none">
+                            <span className="text-dark">{`$${savingsTotal} Ahorros`}</span>
+                            <i className="bi bi-arrow-right-circle text-dark fs-6"></i>
                         </Link>
 
                     </div>

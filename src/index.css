@@ -18,3 +18,27 @@
     background-color: #ffffff;
   }
 }
+
+.bg-savings-exp {
+  background-color: #a5d7a7;
+}
+
+.bg-savings {
+  background-color: #4CAF50;
+}
+
+.bg-needs-exp {
+  background-color: #90caf9;
+}
+
+.bg-needs {
+  background-color: #2196F3;
+}
+
+.bg-wants-exp {
+  background-color: #ffcb7f;
+}
+
+.bg-wants {
+  background-color: #FF9800;
+}
