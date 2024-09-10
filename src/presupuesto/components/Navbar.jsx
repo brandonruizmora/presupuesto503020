@@ -37,7 +37,7 @@ export const Navbar = () => {
                             <Link className={budget ? "nav-item nav-link" : "nav-item nav-link active"} to={`/${year}/${month}`}>{`Presupuesto de ${monthText}`}</Link>
                         }
                     </ul>
-                    <NavLink className="nav-link" to="/config">Configuración</NavLink>
+                    <NavLink className="nav-link" to="/config"><i className="bi bi-gear-fill"></i> Configuración</NavLink>
                 </div>
             </div>
         </nav>
