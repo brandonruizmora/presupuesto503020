@@ -19,16 +19,34 @@ export const MonthsPage = () => {
 
     return (
         <div className="container">
-            <div className="row">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
                 {
                     yearContext.months.map(month => (
-                        <Link key={month.id} to={month.id.toString()} className="col-12 col-md-6 col-lg-4">{month.month}</Link>
+                        <Link
+                            key={month.id}
+                            to={month.id.toString()}
+                            className="col"
+                        >
+                            <div className="card h-100">
+                                <div className="card-body">
+                                    <h5 className="card-title">{month.month}</h5>
+                                </div>
+                            </div>
+                        </Link>
                     ))
                 }
                 {
                     yearContext.months.length < 12 &&
-                    <div className="col-12">
-                        <button type="button" className="btn btn-dark" onClick={handleAddMonth}>Nuevo mes</button>
+                    <div className="col">
+                        <div
+                            type="button"
+                            className="card h-100"
+                            onClick={handleAddMonth}
+                        >
+                            <div className="card-body">
+                                <h5 className="card-title">Nuevo mes</h5>
+                            </div>
+                        </div>
                     </div>
                 }
             </div>
