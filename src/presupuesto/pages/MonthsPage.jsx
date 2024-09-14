@@ -27,9 +27,9 @@ export const MonthsPage = () => {
                             to={month.id.toString()}
                             className="col"
                         >
-                            <div className="card h-100">
+                            <div className="card text-bg-light h-100">
                                 <div className="card-body">
-                                    <h5 className="card-title">{month.month}</h5>
+                                    <h5 className="card-title text-center text-decoration-underline">{month.month}</h5>
                                 </div>
                             </div>
                         </Link>
@@ -40,11 +40,11 @@ export const MonthsPage = () => {
                     <div className="col">
                         <div
                             type="button"
-                            className="card h-100"
+                            className="card border-secondary h-100"
                             onClick={handleAddMonth}
                         >
                             <div className="card-body">
-                                <h5 className="card-title">Nuevo mes</h5>
+                                <h5 className="card-title text-center">Nuevo mes</h5>
                             </div>
                         </div>
                     </div>
