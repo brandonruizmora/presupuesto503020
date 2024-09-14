@@ -46,7 +46,7 @@ export const BudgetPage = () => {
 
     const options = {
         legend: "bottom",
-        pieSliceText: "label",
+        pieSliceText: "none",
         colors: ["#2196F3", "#FF9800", "#4CAF50"]
     }
 
@@ -65,7 +65,7 @@ export const BudgetPage = () => {
                         diffdata={diffdata}
                         options={options}
                         width={"100%"}
-                        height={"400px"}
+                        height={"100%"}
                     />
                 </div>
                 <div className="col-12 col-md-6 col-lg-4">
