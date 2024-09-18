@@ -47,8 +47,35 @@ export const BudgetPage = () => {
     const options = {
         legend: "bottom",
         pieSliceText: "none",
-        colors: ["#2196F3", "#FF9800", "#4CAF50"]
+        colors: ["#2196F3", "#FF9800", "#4CAF50"],
+        tooltip: {
+            trigger: 'none'
+        }
     }
+
+    const chartEvents = [
+        {
+            eventName: "select",
+            callback({ chartWrapper }) {
+                console.log(chartWrapper)
+                console.log("Selected ", chartWrapper.getChart().getSelection());
+            }
+        },
+        /*{
+            eventName: "ready",
+            callback: ({ chartWrapper, google }) => {
+                const chart = chartWrapper.getChart();
+                google.visualization.events.addListener(chart, "onmouseover", e => {
+                    const { row, column } = e;
+                    console.warn("MOUSE OVER ", { row, column });
+                });
+                google.visualization.events.addListener(chart, "onmouseout", e => {
+                    const { row, column } = e;
+                    console.warn("MOUSE OUT ", { row, column });
+                });
+            }
+        }*/
+    ];
 
     return (
         <div className="container">
@@ -66,6 +93,7 @@ export const BudgetPage = () => {
                         options={options}
                         width={"100%"}
                         height={"100%"}
+                        chartEvents={chartEvents}
                     />
                 </div>
                 <div className="col-12 col-md-6 col-lg-4">
