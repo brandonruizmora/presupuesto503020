@@ -1,4 +1,3 @@
-import { YearsPage } from "./presupuesto/pages/YearsPage"
 import { AppRouter } from "./router/AppRouter"
 import { Navbar } from "./presupuesto/components/Navbar"
 
@@ -7,7 +6,6 @@ function App() {
   return (
     <div className="container-fluid">
       <Navbar />
-      <div className="mt-0 mt-sm-3 mt-md-5"></div>
       <AppRouter />
     </div>
   )
