@@ -8,7 +8,6 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
     const [data, setData] = useState(expenseData);
 
     useEffect(() => {
-        console.log("modal", expenseData)
         setData({ ...expenseData });
         return () => {
         }

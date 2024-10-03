@@ -106,10 +106,8 @@ export const NeedsWantsSavings = () => {
                     <div className="list-group">
                         {
                             expenses.map(expense => (
-                                <div key={expense.id} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-                                    onClick={() => handleEditExpense(expense)}
-                                >
-                                    <div>
+                                <div key={expense.id} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div className="flex-grow-1" onClick={() => handleEditExpense(expense)}>
                                         <i className="bi bi-pencil me-3"></i>
                                         ${expense.total} - {expense.expense}
                                     </div>
