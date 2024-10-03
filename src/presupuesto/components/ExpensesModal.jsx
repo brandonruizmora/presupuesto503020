@@ -3,12 +3,11 @@ import "./components-css.css"
 import { addNewExpenseNeeds, addNewExpenseWants } from "../../redux/budgetSlice";
 import { useState } from "react";
 
-export const ExpensesModal = ({ expenses, year, month, id }) => {
+export const ExpensesModal = ({ expenses, year, month }) => {
 
     let titleAndDescription = "";
 
     const [data, setData] = useState({
-        id: 0,
         expense: "",
         description: "",
         total: 0
@@ -36,12 +35,11 @@ export const ExpensesModal = ({ expenses, year, month, id }) => {
     const handleClicSubmit = () => {
         const idYearInt = parseInt(year);
         const idMonthInt = parseInt(month);
-        const expense = {id: id, ...data};
 
         if (expenses === "needs") {
-            dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: expense }));
+            dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
         } else if (expenses === "wants") {
-            dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: expense }));
+            dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
         } else if (expenses === "savings") {
 
         }

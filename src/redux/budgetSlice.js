@@ -31,11 +31,17 @@ const budgetSlice = createSlice({
         },
         addNewExpenseNeeds: (state, action) => {
             const { idYear, idMonth, expense } = action.payload;
-            state.find(y => y.id === idYear).months.find(m => m.id === idMonth).needs.push({ ...expense });
+            const year = state.find(y => y.id === idYear);  // Encuentra el año
+            const month = year.months.find(m => m.id === idMonth);  // Encuentra el mes
+            const idExpense = month.needs.length; // Encuentra cuantos elementos hay
+            state.find(y => y.id === idYear).months.find(m => m.id === idMonth).needs.push({ id: idExpense, ...expense });
         },
         addNewExpenseWants: (state, action) => {
             const { idYear, idMonth, expense } = action.payload;
-            state.find(y => y.id === idYear).months.find(m => m.id === idMonth).wants.push({ ...expense });
+            const year = state.find(y => y.id === idYear);  // Encuentra el año
+            const month = year.months.find(m => m.id === idMonth);  // Encuentra el mes
+            const idExpense = month.wants.length; // Encuentra cuantos elementos hay
+            state.find(y => y.id === idYear).months.find(m => m.id === idMonth).wants.push({ id: idExpense, ...expense });
         },
         deleteExpenseNeeds: (state, action) => {
             const { idYear, idMonth, idExpense } = action.payload;

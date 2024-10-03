@@ -105,7 +105,7 @@ export const NeedsWantsSavings = () => {
                     </div>
                 </div>
             </div>
-            <ExpensesModal expenses={budget} year={year} month={month} id={expenses.length} />
+            <ExpensesModal expenses={budget} year={year} month={month} />
         </div>
     )
 }
