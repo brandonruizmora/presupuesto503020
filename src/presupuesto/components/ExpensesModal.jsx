@@ -1,17 +1,20 @@
 import { useDispatch } from "react-redux";
 import "./components-css.css"
-import { addNewExpenseNeeds, addNewExpenseWants } from "../../redux/budgetSlice";
-import { useState } from "react";
+import { addNewExpenseNeeds, addNewExpenseWants, editExpenseNeeds } from "../../redux/budgetSlice";
+import { useEffect, useState } from "react";
 
-export const ExpensesModal = ({ expenses, year, month }) => {
+export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
+
+    const [data, setData] = useState(expenseData);
+
+    useEffect(() => {
+        console.log("modal",expenseData)
+        setData({ ...expenseData });
+        return () => {
+        }
+    }, [expenseData])
 
     let titleAndDescription = "";
-
-    const [data, setData] = useState({
-        expense: "",
-        description: "",
-        total: 0
-    });
 
     const dispatch = useDispatch();
 
@@ -37,7 +40,11 @@ export const ExpensesModal = ({ expenses, year, month }) => {
         const idMonthInt = parseInt(month);
 
         if (expenses === "needs") {
-            dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+            if (data.id != undefined) {
+                dispatch(editExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+            } else {
+                dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+            }
         } else if (expenses === "wants") {
             dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
         } else if (expenses === "savings") {
@@ -74,7 +81,7 @@ export const ExpensesModal = ({ expenses, year, month }) => {
 
     return (
         <>
-            <i type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className="bi bi-plus-circle-fill floating-button"></i>
+            <i id="buttonOpen" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className="bi bi-plus-circle-fill floating-button"></i>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">

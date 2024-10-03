@@ -3,8 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Chart } from "react-google-charts";
 import { ExpensesModal } from "../components/ExpensesModal"
 import { deleteExpenseNeeds, deleteExpenseWants } from "../../redux/budgetSlice";
+import { useState } from "react";
 
 export const NeedsWantsSavings = () => {
+
+    const [expenseData, setExpenseData] = useState({
+        expense: "",
+        description: "",
+        total: 0
+    });
 
     const { totalIncome } = useSelector(state => state.config);
 
@@ -76,6 +83,12 @@ export const NeedsWantsSavings = () => {
         }
     }
 
+    const handleEditExpense = (expense) => {
+        var openButton = document.getElementById('buttonOpen');  // Selecciona el botón con id buttonOpen
+        openButton.click();  // Simula un clic en el botón
+        setExpenseData(expense);
+    }
+
     return (
         <div className="container">
             <div className="row">
@@ -93,7 +106,9 @@ export const NeedsWantsSavings = () => {
                     <div className="list-group">
                         {
                             expenses.map(expense => (
-                                <div key={expense.id} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                <div key={expense.id} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                    onClick={() => handleEditExpense(expense)}
+                                >
                                     <div>
                                         <i className="bi bi-pencil me-3"></i>
                                         ${expense.total} - {expense.expense}
@@ -105,7 +120,7 @@ export const NeedsWantsSavings = () => {
                     </div>
                 </div>
             </div>
-            <ExpensesModal expenses={budget} year={year} month={month} />
+            <ExpensesModal expenses={budget} year={year} month={month} expenseData={expenseData} />
         </div>
     )
 }
