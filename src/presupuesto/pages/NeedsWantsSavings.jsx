@@ -75,12 +75,16 @@ export const NeedsWantsSavings = () => {
                     />
                 </div>
                 <div className="col-12 col-md-6">
-                    {title}
-                    <div className="row">
+                    <h5 className="mb-5">{title}</h5>
+                    <div className="list-group">
                         {
                             expenses.map(expense => (
-                                <div key={expense.expense} className="col-12">
-                                    ${expense.total} - {expense.expense}
+                                <div key={expense.expense} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <i className="bi bi-pencil me-3"></i>
+                                        ${expense.total} - {expense.expense}
+                                    </div>
+                                    <i className="bi bi-trash3 ms-3"></i>
                                 </div>
                             ))
                         }
