@@ -88,9 +88,35 @@ const budgetSlice = createSlice({
                 month.needs[index].total = expense.total;
             }
         },
+        editExpenseWants: (state, action) => {
+            const { idYear, idMonth, expense } = action.payload;
+
+            const year = state.find(y => y.id === idYear);  // Encuentra el año
+            const month = year.months.find(m => m.id === idMonth);  // Encuentra el mes
+
+            // Encuentra el índice del elemento que se quiere modificar
+            const index = month.wants.findIndex(need => need.id === expense.id);
+
+            // Si se encontró el índice (no es -1), edita el elemento
+            if (index !== -1) {
+                // Modificar directamente las propiedades del objeto
+                month.wants[index].expense = expense.expense;
+                month.wants[index].description = expense.description;
+                month.wants[index].total = expense.total;
+            }
+        },
     }
 });
 
-export const { addNewYear, addNewMonthToYear, addNewExpenseNeeds, addNewExpenseWants, deleteExpenseNeeds, deleteExpenseWants, editExpenseNeeds } = budgetSlice.actions
+export const {
+    addNewYear,
+    addNewMonthToYear,
+    addNewExpenseNeeds,
+    addNewExpenseWants,
+    deleteExpenseNeeds,
+    deleteExpenseWants,
+    editExpenseNeeds,
+    editExpenseWants
+} = budgetSlice.actions
 
 export default budgetSlice.reducer

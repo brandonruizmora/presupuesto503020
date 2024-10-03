@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import "./components-css.css"
-import { addNewExpenseNeeds, addNewExpenseWants, editExpenseNeeds } from "../../redux/budgetSlice";
+import { addNewExpenseNeeds, addNewExpenseWants, editExpenseNeeds, editExpenseWants } from "../../redux/budgetSlice";
 import { useEffect, useState } from "react";
 
 export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
@@ -8,7 +8,7 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
     const [data, setData] = useState(expenseData);
 
     useEffect(() => {
-        console.log("modal",expenseData)
+        console.log("modal", expenseData)
         setData({ ...expenseData });
         return () => {
         }
@@ -46,7 +46,11 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
                 dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
             }
         } else if (expenses === "wants") {
-            dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+            if (data.id != undefined) {
+                dispatch(editExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+            } else {
+                dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+            }
         } else if (expenses === "savings") {
 
         }
