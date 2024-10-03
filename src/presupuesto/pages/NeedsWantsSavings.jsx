@@ -62,6 +62,8 @@ export const NeedsWantsSavings = () => {
             break;
     }
 
+    console.log(expenses.length)
+
     return (
         <div className="container">
             <div className="row">
@@ -79,7 +81,7 @@ export const NeedsWantsSavings = () => {
                     <div className="list-group">
                         {
                             expenses.map(expense => (
-                                <div key={expense.expense} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                <div key={expense.id} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                     <div>
                                         <i className="bi bi-pencil me-3"></i>
                                         ${expense.total} - {expense.expense}
@@ -91,7 +93,7 @@ export const NeedsWantsSavings = () => {
                     </div>
                 </div>
             </div>
-            <ExpensesModal expenses={budget} year={year} month={month} />
+            <ExpensesModal expenses={budget} year={year} month={month} id={expenses.length} />
         </div>
     )
 }

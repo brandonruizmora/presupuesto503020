@@ -3,11 +3,14 @@ import "./components-css.css"
 import { addNewExpenseNeeds, addNewExpenseWants } from "../../redux/budgetSlice";
 import { useState } from "react";
 
-export const ExpensesModal = ({ expenses, year, month }) => {
+export const ExpensesModal = ({ expenses, year, month, id }) => {
+
+    console.log("modalid"+id)
 
     let titleAndDescription = "";
 
     const [data, setData] = useState({
+        id: 0,
         expense: "",
         description: "",
         total: 0
@@ -35,18 +38,25 @@ export const ExpensesModal = ({ expenses, year, month }) => {
     const handleClicSubmit = () => {
         const idYearInt = parseInt(year);
         const idMonthInt = parseInt(month);
+        const expense = {id: id, ...data};
+
+        if (expenses === "needs") {
+            dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: expense }));
+        } else if (expenses === "wants") {
+            dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: expense }));
+        } else if (expenses === "savings") {
+
+        }
+
         setData({
             expense: "",
             description: "",
             total: 0
         });
-        if (expenses === "needs") {
-            dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
-        } else if (expenses === "wants") {
-            dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
-        } else if (expenses === "savings") {
 
-        }
+        var closeButton = document.querySelector('[data-bs-dismiss="modal"]');  // Selecciona el botón que tiene data-bs-dismiss="modal"
+        closeButton.click();  // Simula un clic en el botón
+
     }
 
     const handleInputChange = (e) => {
