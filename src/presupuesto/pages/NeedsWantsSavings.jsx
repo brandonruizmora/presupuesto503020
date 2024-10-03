@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Chart } from "react-google-charts";
 import { ExpensesModal } from "../components/ExpensesModal"
+import { deleteExpenseNeeds, deleteExpenseWants } from "../../redux/budgetSlice";
 
 export const NeedsWantsSavings = () => {
 
@@ -22,6 +23,7 @@ export const NeedsWantsSavings = () => {
         colors: ["#4CAF50"]
     }
 
+    const dispatch = useDispatch();
 
     switch (budget) {
         case "needs":
@@ -62,7 +64,17 @@ export const NeedsWantsSavings = () => {
             break;
     }
 
-    console.log(expenses.length)
+    const handleDeleteExpense = (id) => {
+        if (budget === "needs") {
+            const idYearInt = parseInt(year);
+            const idMonthInt = parseInt(month);
+            dispatch(deleteExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, idExpense: id }));
+        } else if (budget === "wants") {
+            const idYearInt = parseInt(year);
+            const idMonthInt = parseInt(month);
+            dispatch(deleteExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, idExpense: id }));
+        }
+    }
 
     return (
         <div className="container">
@@ -86,7 +98,7 @@ export const NeedsWantsSavings = () => {
                                         <i className="bi bi-pencil me-3"></i>
                                         ${expense.total} - {expense.expense}
                                     </div>
-                                    <i className="bi bi-trash3 ms-3"></i>
+                                    <i className="bi bi-trash3 ms-3" onClick={() => handleDeleteExpense(expense.id)}></i>
                                 </div>
                             ))
                         }

@@ -5,8 +5,6 @@ import { useState } from "react";
 
 export const ExpensesModal = ({ expenses, year, month, id }) => {
 
-    console.log("modalid"+id)
-
     let titleAndDescription = "";
 
     const [data, setData] = useState({
