@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
 
     const [data, setData] = useState(expenseData);
+    const [submitExpense, setSubmitExpense] = useState("");
 
     useEffect(() => {
         setData({ ...expenseData });
@@ -31,20 +32,22 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
             break;
 
         default:
+            titleAndDescription = "gasto"
             break;
     }
 
     const handleClicSubmit = () => {
+        console.log(submitExpense)
         const idYearInt = parseInt(year);
         const idMonthInt = parseInt(month);
 
-        if (expenses === "needs") {
+        if (expenses === "needs" || submitExpense === "needs") {
             if (data.id != undefined) {
                 dispatch(editExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
             } else {
                 dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
             }
-        } else if (expenses === "wants") {
+        } else if (expenses === "wants" || submitExpense === "wants") {
             if (data.id != undefined) {
                 dispatch(editExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
             } else {
@@ -59,6 +62,8 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
             description: "",
             total: 0
         });
+
+        setSubmitExpense("");
 
         var closeButton = document.querySelector('[data-bs-dismiss="modal"]');  // Selecciona el botón que tiene data-bs-dismiss="modal"
         closeButton.click();  // Simula un clic en el botón
@@ -107,6 +112,16 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
                                 <input type="number" className="form-control" id="inputExpenseTotal" value={data.total} onChange={handleInputChange} />
                                 <div id="expenseTotalHelp" className="form-text">100.54</div>
                             </div>
+                            {
+                                expenses === "quick" &&
+                                <div className="mb-3">
+                                    <select className="form-select" value={submitExpense} onChange={(e) => setSubmitExpense(e.target.value)} aria-label="Default select example">
+                                        <option value="">Selecciona el tipo de gasto</option>
+                                        <option value="needs">Necesidad</option>
+                                        <option value="wants">Prescindible</option>
+                                    </select>
+                                </div>
+                            }
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
