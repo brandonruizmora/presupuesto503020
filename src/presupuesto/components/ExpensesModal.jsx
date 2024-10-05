@@ -89,7 +89,10 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
 
     return (
         <>
-            <i id="buttonOpen" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className="bi bi-plus-circle-fill floating-button"></i>
+            <div className="floating-button d-flex align-items-center flex-column">
+                <i id="buttonOpen" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className="bi bi-plus-circle-fill"></i>
+                <span className="xx-small-text">añadir gasto</span>
+            </div>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">

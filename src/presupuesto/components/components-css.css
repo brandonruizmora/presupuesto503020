@@ -5,5 +5,9 @@
     border-radius: 75%;
     padding: 3px 10px;
     font-size: 2rem;
-    color: red;
+    color: rgb(137, 51, 183);
+}
+
+.xx-small-text {
+    font-size: xx-small;
 }
