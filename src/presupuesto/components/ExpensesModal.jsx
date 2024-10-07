@@ -10,6 +10,7 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
     const [submitExpense, setSubmitExpense] = useState("");
     const inputExpenseRef = useRef(null);
     const inputExpenseTotalRef = useRef(null);
+    const inputExpenseSelectRef = useRef(null);
     const modalRef = useRef(null);
 
     useEffect(() => {
@@ -25,6 +26,9 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
             // Quitar la clase cuando el modal se oculta
             inputExpenseRef.current.classList.remove('invalid-input');
             inputExpenseTotalRef.current.classList.remove('invalid-input');
+            if (inputExpenseSelectRef.current) {
+                inputExpenseSelectRef.current.classList.remove('invalid-input');
+            }
         };
 
         // Agregar el evento "hidden.bs.modal" de Bootstrap
@@ -60,6 +64,13 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
     }
 
     const handleClicSubmit = () => {
+
+        if (expenses === "quick" && submitExpense === "") {
+            toast.error('El tipo de gasto no puede estar vacio');
+            if (inputExpenseSelectRef.current) {
+                inputExpenseSelectRef.current.classList.add('invalid-input');
+            }
+        }
 
         //Validate empty data
         if (data.expense === "" && data.total <= 0) {
@@ -151,7 +162,7 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
                             {
                                 expenses === "quick" &&
                                 <div className="mb-3">
-                                    <select className="form-select" value={submitExpense} onChange={(e) => setSubmitExpense(e.target.value)} aria-label="Default select example">
+                                    <select className="form-select" value={submitExpense} onChange={(e) => setSubmitExpense(e.target.value)} aria-label="Default select example" ref={inputExpenseSelectRef}>
                                         <option value="">Selecciona el tipo de gasto</option>
                                         <option value="needs">Necesidad</option>
                                         <option value="wants">Prescindible</option>
