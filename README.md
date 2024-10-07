@@ -15,3 +15,4 @@ Currently, two official plugins are available:
 [react-google-charts](https://www.react-google-charts.com/)
 [redux toolkit](https://redux-toolkit.js.org/)
 [react router dom](https://reactrouter.com/en/main)
+[Toast component alert](https://alert.gersti.dev/)
