@@ -142,7 +142,7 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">{`Agregar un nuevo ` + titleAndDescription}</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="cerrar"></button>
                         </div>
                         <div className="modal-body">
                             <div className="mb-3">
@@ -171,8 +171,8 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
                             }
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleClicSubmit}>Save changes</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" className="btn btn-primary" onClick={handleClicSubmit}>Guardar</button>
                         </div>
                     </div>
                 </div>

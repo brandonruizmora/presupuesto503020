@@ -57,7 +57,7 @@ export const ConfigPage = () => {
                     </div>
                 </div>
                 <div className="col-12 d-flex flex-row-reverse">
-                    <button type="button" className="btn btn-primary" onClick={handleSaveConfig}>Save changes</button>
+                    <button type="button" className="btn btn-primary" onClick={handleSaveConfig}>Guardar</button>
                 </div>
             </div>
         </div>
