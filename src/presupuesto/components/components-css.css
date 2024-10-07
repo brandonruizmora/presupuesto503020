@@ -11,3 +11,7 @@
 .xx-small-text {
     font-size: xx-small;
 }
+
+.invalid-input {
+    border-color: #ff4f4f;
+}

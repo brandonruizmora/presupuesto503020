@@ -1,17 +1,40 @@
 import { useDispatch } from "react-redux";
 import "./components-css.css"
 import { addNewExpenseNeeds, addNewExpenseWants, editExpenseNeeds, editExpenseWants } from "../../redux/budgetSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Toaster, toast } from 'alert';
 
 export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
 
     const [data, setData] = useState(expenseData);
     const [submitExpense, setSubmitExpense] = useState("");
+    const inputExpenseRef = useRef(null);
+    const inputExpenseTotalRef = useRef(null);
+    const modalRef = useRef(null);
 
     useEffect(() => {
+
+        //Settear data cuando se monta el componente modal
         setData({ ...expenseData });
+
+
+        // Al montar el componente, agregamos el evento "hidden.bs.modal"
+        const modalElement = modalRef.current;
+
+        const handleModalHidden = () => {
+            // Quitar la clase cuando el modal se oculta
+            inputExpenseRef.current.classList.remove('invalid-input');
+            inputExpenseTotalRef.current.classList.remove('invalid-input');
+        };
+
+        // Agregar el evento "hidden.bs.modal" de Bootstrap
+        modalElement.addEventListener('hidden.bs.modal', handleModalHidden);
+
+        // Limpiar el evento cuando el componente se desmonta
         return () => {
+            modalElement.removeEventListener('hidden.bs.modal', handleModalHidden);
         }
+
     }, [expenseData])
 
     let titleAndDescription = "";
@@ -37,37 +60,46 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
     }
 
     const handleClicSubmit = () => {
-        console.log(submitExpense)
-        const idYearInt = parseInt(year);
-        const idMonthInt = parseInt(month);
 
-        if (expenses === "needs" || submitExpense === "needs") {
-            if (data.id != undefined) {
-                dispatch(editExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
-            } else {
-                dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+        //Validate empty data
+        if (data.expense === "" && data.total <= 0) {
+            toast.error('Gasto y Total no pueden estar vacios');
+            if (inputExpenseRef.current && inputExpenseTotalRef.current) {
+                inputExpenseRef.current.classList.add('invalid-input');
+                inputExpenseTotalRef.current.classList.add('invalid-input');
             }
-        } else if (expenses === "wants" || submitExpense === "wants") {
-            if (data.id != undefined) {
-                dispatch(editExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
-            } else {
-                dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
-            }
-        } else if (expenses === "savings") {
 
+        } else {
+            const idYearInt = parseInt(year);
+            const idMonthInt = parseInt(month);
+
+            if (expenses === "needs" || submitExpense === "needs") {
+                if (data.id != undefined) {
+                    dispatch(editExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+                } else {
+                    dispatch(addNewExpenseNeeds({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+                }
+            } else if (expenses === "wants" || submitExpense === "wants") {
+                if (data.id != undefined) {
+                    dispatch(editExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+                } else {
+                    dispatch(addNewExpenseWants({ idYear: idYearInt, idMonth: idMonthInt, expense: data }));
+                }
+            } else if (expenses === "savings") {
+
+            }
+
+            setData({
+                expense: "",
+                description: "",
+                total: 0
+            });
+
+            setSubmitExpense("");
+
+            var closeButton = document.querySelector('[data-bs-dismiss="modal"]');  // Selecciona el botón que tiene data-bs-dismiss="modal"
+            closeButton.click();  // Simula un clic en el botón
         }
-
-        setData({
-            expense: "",
-            description: "",
-            total: 0
-        });
-
-        setSubmitExpense("");
-
-        var closeButton = document.querySelector('[data-bs-dismiss="modal"]');  // Selecciona el botón que tiene data-bs-dismiss="modal"
-        closeButton.click();  // Simula un clic en el botón
-
     }
 
     const handleInputChange = (e) => {
@@ -89,11 +121,12 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
 
     return (
         <>
+            <Toaster />
             <div className="floating-button d-flex align-items-center flex-column">
                 <i id="buttonOpen" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className="bi bi-plus-circle-fill"></i>
                 <span className="xx-small-text">añadir gasto</span>
             </div>
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref={modalRef}>
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -103,7 +136,7 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
                         <div className="modal-body">
                             <div className="mb-3">
                                 <label htmlFor="inputExpense" className="form-label">{titleAndDescription}</label>
-                                <input type="text" className="form-control" id="inputExpense" value={data.expense} onChange={handleInputChange} />
+                                <input type="text" className="form-control" id="inputExpense" value={data.expense} onChange={handleInputChange} ref={inputExpenseRef} />
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="inputExpenseDescription" className="form-label">descripción</label>
@@ -112,7 +145,7 @@ export const ExpensesModal = ({ expenses, year, month, expenseData }) => {
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="inputExpenseTotal" className="form-label">total</label>
-                                <input type="number" className="form-control" id="inputExpenseTotal" value={data.total} onChange={handleInputChange} />
+                                <input type="number" className="form-control" id="inputExpenseTotal" value={data.total} onChange={handleInputChange} ref={inputExpenseTotalRef} />
                                 <div id="expenseTotalHelp" className="form-text">100.54</div>
                             </div>
                             {
