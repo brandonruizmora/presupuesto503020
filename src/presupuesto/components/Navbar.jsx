@@ -17,24 +17,24 @@ export const Navbar = () => {
     const monthText = monthNames[month] || "";
 
     return (
-        <nav className="navbar navbar-expand-md bg-body-tertiary">
+        <nav className="navbar navbar-expand-md text-bg-dark mb-5">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">Presupuesto 50/30/20</a>
+                <a className="navbar-brand text-bg-dark" href="/">Presupuesto 50/30/20</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav me-auto">
-                        <NavLink className="nav-item nav-link" to="/">Años</NavLink>
+                    <ul className="navbar-nav me-auto nav-underline">
+                        <NavLink className="nav-item nav-link text-bg-dark" to="/">Años</NavLink>
                         {
                             !isNaN(year)
                             &&
-                            <Link className={!isNaN(month) ? "nav-item nav-link" : "nav-item nav-link active"} to={`/${year}`}>{`meses del ${year}`}</Link>
+                            <Link className={!isNaN(month) ? "nav-item nav-link text-bg-dark" : "nav-item nav-link text-bg-dark active"} to={`/${year}`}>{`meses del ${year}`}</Link>
                         }
                         {
                             !isNaN(month)
                             &&
-                            <Link className={budget ? "nav-item nav-link" : "nav-item nav-link active"} to={`/${year}/${month}`}>{`Presupuesto de ${monthText}`}</Link>
+                            <Link className={budget ? "nav-item nav-link text-bg-dark" : "nav-item nav-link text-bg-dark active"} to={`/${year}/${month}`}>{`Presupuesto de ${monthText}`}</Link>
                         }
                     </ul>
                     <NavLink className="nav-link" to="/config"><i className="bi bi-gear-fill"></i> Configuración</NavLink>
