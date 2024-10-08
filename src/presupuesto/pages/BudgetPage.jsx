@@ -90,6 +90,7 @@ export const BudgetPage = () => {
                     <div className="row">
                         <div className="col-12 col-md-6 col-lg-3 text-center d-none d-lg-block">
                             <h4 className="mb-4">Información Presupuestos</h4>
+                            <p className="bg-total-all-exp rounded px-1">Total presupuesto <br /> {`$${formatNumber(totalIncome)}`}</p>
                             <p className="bg-needs-exp rounded px-1">Presupuesto para necesidades <br /> {`$${formatNumber(totalIncome * .5)}`}</p>
                             <p className="bg-wants-exp rounded px-1">Presupuesto para prescindibles <br /> {`$${formatNumber(totalIncome * .3)}`}</p>
                             <p className="bg-savings-exp rounded px-1">Presupuesto para el ahorro <br /> {`$${formatNumber(totalIncome * .2)}`}</p>
