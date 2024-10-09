@@ -24,26 +24,29 @@ export const NeedsWantsSavings = () => {
 
     let title = "";
 
-    let total = totalIncome;
+    let ahorroTotal = totalIncome;
 
     let options = {
         legend: "none",
         colors: ["#4CAF50"]
     }
 
+    let budgetTotal = 0;
+
     const dispatch = useDispatch();
 
     switch (budget) {
         case "needs":
             title = "Necesidades";
-            total = totalIncome * .5;
+            ahorroTotal = totalIncome * .5;
+            budgetTotal = totalIncome * .5;
             expenses = useSelector((state) => state.year.find(y => y.id == year).months.find(m => m.id == month).needs);
             expenses.forEach(element => {
-                total = total - element.total
+                ahorroTotal = ahorroTotal - element.total
             });
             dataChart = [
                 ["Expense", "Amount"],
-                ["Excedente", total],
+                ["Ahorro", ahorroTotal],
                 ...expenses.map(item => [item.expense, item.total])
             ];
             options.colors.push("#2196F3");
@@ -51,14 +54,15 @@ export const NeedsWantsSavings = () => {
 
         case "wants":
             title = "Prescindibles";
-            total = totalIncome * .3;
+            ahorroTotal = totalIncome * .3;
+            budgetTotal = totalIncome * .3;
             expenses = useSelector((state) => state.year.find(y => y.id == year).months.find(m => m.id == month).wants);
             expenses.forEach(element => {
-                total = total - element.total
+                ahorroTotal = ahorroTotal - element.total
             });
             dataChart = [
                 ["Expense", "Amount"],
-                ["Excedente", total],
+                ["Ahorro", ahorroTotal],
                 ...expenses.map(item => [item.expense, item.total])
             ];
             options.colors.push("#FF9800");
@@ -102,15 +106,15 @@ export const NeedsWantsSavings = () => {
                     <div className="row">
                         <div className="col-4 col-lg-12 mb-0 mb-md-3 d-flex flex-lg-row flex-column justify-content-between align-items-center text-center custom-border">
                             Presupuesto para {title}:
-                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber(totalIncome * .5)}`}</span>
+                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber(budgetTotal)}`}</span>
                         </div>
                         <div className="col-4 col-lg-12  mb-0 mb-md-3 d-flex flex-lg-row flex-column justify-content-between align-items-center text-center custom-border">
                             Ahorros en {title}:
-                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber(total)}`}</span>
+                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber(ahorroTotal)}`}</span>
                         </div>
                         <div className="col-4 col-lg-12  mb-0 mb-md-3 d-flex flex-lg-row flex-column justify-content-between align-items-center text-center custom-border">
                             Total Gastado en {title}:
-                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber((totalIncome * .5) - total)}`}</span>
+                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber((budgetTotal) - ahorroTotal)}`}</span>
                         </div>
                     </div>
                 </div>
