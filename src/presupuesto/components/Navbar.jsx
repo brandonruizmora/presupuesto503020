@@ -17,9 +17,9 @@ export const Navbar = () => {
     const monthText = monthNames[month] || "";
 
     return (
-        <nav className="navbar navbar-expand-md text-bg-dark mb-5">
+        <nav className="navbar navbar-expand-md bg-dark border-bottom border-body mb-5" data-bs-theme="dark">
             <div className="container-fluid">
-                <a className="navbar-brand text-bg-dark" href="/">Presupuesto 50/30/20</a>
+                <a className="navbar-brand" href="/">Presupuesto 50/30/20</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -37,7 +37,7 @@ export const Navbar = () => {
                             <Link className={budget ? "nav-item nav-link text-bg-dark" : "nav-item nav-link text-bg-dark active"} to={`/${year}/${month}`}>{`Presupuesto de ${monthText}`}</Link>
                         }
                     </ul>
-                    <NavLink className="nav-link" to="/config"><i className="bi bi-gear-fill"></i> Configuración</NavLink>
+                    <NavLink className="nav-item nav-link text-bg-dark" to="/config"><i className="bi bi-gear-fill"></i> Configuración</NavLink>
                 </div>
             </div>
         </nav>
