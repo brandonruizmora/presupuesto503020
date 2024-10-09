@@ -46,3 +46,11 @@
 .bg-total-all-exp {
   background-color: #cbcccb;
 }
+
+@media (min-width: 992px) {
+  .custom-border {
+    border-bottom: 1px solid; /* Ajusta el grosor del borde */
+    border-image: linear-gradient(to right, rgba(128, 128, 128, 1) 0%, rgba(128, 128, 128, 0.5) 50%, rgba(128, 128, 128, 0) 100%);
+    border-image-slice: 1;
+  }
+}

@@ -1,7 +1,7 @@
 .floating-button {
     position: fixed;
-    top: 75px;
-    right: 55px;
+    bottom: 30px;
+    right: 30px;
     border-radius: 75%;
     padding: 3px 10px;
     font-size: 2rem;
@@ -10,6 +10,10 @@
 
 .xx-small-text {
     font-size: xx-small;
+}
+
+.rem10-text {
+    font-size: 10rem;
 }
 
 .invalid-input {

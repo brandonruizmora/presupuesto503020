@@ -4,6 +4,7 @@ import { Chart } from "react-google-charts";
 import { ExpensesModal } from "../components/ExpensesModal"
 import { deleteExpenseNeeds, deleteExpenseWants } from "../../redux/budgetSlice";
 import { useState } from "react";
+import { formatNumber } from "../utils";
 
 export const NeedsWantsSavings = () => {
 
@@ -92,6 +93,27 @@ export const NeedsWantsSavings = () => {
     return (
         <div className="container">
             <div className="row">
+                <div className="col-12">
+                    <div className="row">
+                        <div className="col-12">
+                            <h4 className="mb-4">Presupuesto:</h4>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-4 col-lg-12 mb-0 mb-md-3 d-flex flex-lg-row flex-column justify-content-between align-items-center text-center custom-border">
+                            Presupuesto para {title}:
+                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber(totalIncome * .5)}`}</span>
+                        </div>
+                        <div className="col-4 col-lg-12  mb-0 mb-md-3 d-flex flex-lg-row flex-column justify-content-between align-items-center text-center custom-border">
+                            Ahorros en {title}:
+                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber(total)}`}</span>
+                        </div>
+                        <div className="col-4 col-lg-12  mb-0 mb-md-3 d-flex flex-lg-row flex-column justify-content-between align-items-center text-center custom-border">
+                            Total Gastado en {title}:
+                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber((totalIncome * .5) - total)}`}</span>
+                        </div>
+                    </div>
+                </div>
                 <div className="col-12 col-md-6">
                     <Chart
                         chartType="PieChart"
@@ -102,20 +124,37 @@ export const NeedsWantsSavings = () => {
                     />
                 </div>
                 <div className="col-12 col-md-6">
-                    <h5 className="mb-5">{title}</h5>
-                    <div className="list-group">
-                        {
-                            expenses.map(expense => (
-                                <div key={expense.id} className="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                    <div className="flex-grow-1" onClick={() => handleEditExpense(expense)}>
-                                        <i className="bi bi-pencil me-3"></i>
-                                        ${expense.total} - {expense.expense}
-                                    </div>
-                                    <i className="bi bi-trash3 ms-3" onClick={() => handleDeleteExpense(expense.id)}></i>
+                    {expenses.length <= 0 ?
+                        <div className="card text-center h-100 bg-total-all-exp">
+                            <div className="card-body">
+                                <i className="bi bi-list-ul rem10-text text-light"></i>
+                                <p>No se han añadido gastos...</p>
+                            </div>
+                        </div> :
+                        <div className="card text-center">
+                            <div className="card-header">
+                                {title}
+                            </div>
+                            <div className="card-body">
+                                <div className="list-group list-group-flush">
+                                    {
+                                        expenses.map(expense => (
+                                            <div key={expense.id} className="list-group-item list-group-item-action d-flex flex-row">
+                                                <div className="flex-grow-1 d-flex justify-content-start" onClick={() => handleEditExpense(expense)}>
+                                                    <i className="bi bi-pencil me-3"></i>
+                                                    ${expense.total} - {expense.expense}
+                                                </div>
+                                                <i className="bi bi-trash3 ms-3" onClick={() => handleDeleteExpense(expense.id)}></i>
+                                            </div>
+                                        ))
+                                    }
                                 </div>
-                            ))
-                        }
-                    </div>
+                            </div>
+                            <div className="card-footer text-body-secondary">
+                                {expenses.length}
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
             <ExpensesModal expenses={budget} year={year} month={month} expenseData={expenseData} />
