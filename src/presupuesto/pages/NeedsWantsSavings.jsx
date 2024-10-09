@@ -35,9 +35,12 @@ export const NeedsWantsSavings = () => {
 
     const dispatch = useDispatch();
 
+    let classNameBadge = "";
+
     switch (budget) {
         case "needs":
             title = "Necesidades";
+            classNameBadge = "badge text-bg-primary rounded-pill";
             ahorroTotal = totalIncome * .5;
             budgetTotal = totalIncome * .5;
             expenses = useSelector((state) => state.year.find(y => y.id == year).months.find(m => m.id == month).needs);
@@ -54,6 +57,7 @@ export const NeedsWantsSavings = () => {
 
         case "wants":
             title = "Prescindibles";
+            classNameBadge = "badge text-bg-warning rounded-pill";
             ahorroTotal = totalIncome * .3;
             budgetTotal = totalIncome * .3;
             expenses = useSelector((state) => state.year.find(y => y.id == year).months.find(m => m.id == month).wants);
@@ -106,15 +110,15 @@ export const NeedsWantsSavings = () => {
                     <div className="row">
                         <div className="col-4 col-lg-12 mb-0 mb-md-3 d-flex flex-lg-row flex-column justify-content-between align-items-center text-center custom-border">
                             Presupuesto para {title}:
-                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber(budgetTotal)}`}</span>
+                            <span className="badge text-bg-secondary rounded-pill">{`$${formatNumber(budgetTotal)}`}</span>
                         </div>
                         <div className="col-4 col-lg-12  mb-0 mb-md-3 d-flex flex-lg-row flex-column justify-content-between align-items-center text-center custom-border">
                             Ahorros en {title}:
-                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber(ahorroTotal)}`}</span>
+                            <span className="badge text-bg-success rounded-pill">{`$${formatNumber(ahorroTotal)}`}</span>
                         </div>
                         <div className="col-4 col-lg-12  mb-0 mb-md-3 d-flex flex-lg-row flex-column justify-content-between align-items-center text-center custom-border">
                             Total Gastado en {title}:
-                            <span className="badge text-bg-primary rounded-pill">{`$${formatNumber((budgetTotal) - ahorroTotal)}`}</span>
+                            <span className={classNameBadge}>{`$${formatNumber((budgetTotal) - ahorroTotal)}`}</span>
                         </div>
                     </div>
                 </div>
