@@ -107,7 +107,7 @@ export const BudgetPage = () => {
                         </div>
                         <div className="col-12 col-md-6 col-lg-4">
                             <h4 className="mb-4">Total presupuestos</h4>
-                            <div className="row">
+                            <div className="row px-2 p-md-0">
                                 <Link to="needs" className="col-12 d-flex justify-content-between bg-needs rounded my-3 p-2 text-decoration-none">
                                     <span className="text-white">{`$${formatNumber(needsTotal)} Necesidades`}</span>
                                     <i className="bi bi-arrow-right-circle text-white fs-6"></i>

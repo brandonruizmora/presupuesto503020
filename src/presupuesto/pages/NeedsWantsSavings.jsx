@@ -99,7 +99,7 @@ export const NeedsWantsSavings = () => {
     }
 
     return (
-        <div className="container">
+        <div className="container mb-5 m-md-3">
             <div className="row">
                 <div className="col-12">
                     <div className="row">
