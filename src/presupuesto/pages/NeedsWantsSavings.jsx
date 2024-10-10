@@ -99,12 +99,12 @@ export const NeedsWantsSavings = () => {
     }
 
     return (
-        <div className="container mb-5 m-md-3">
+        <div className="container mb-5 mb-md-3">
             <div className="row">
                 <div className="col-12">
                     <div className="row">
-                        <div className="col-12">
-                            <h4 className="mb-4">Presupuesto:</h4>
+                        <div className="col-12 text-lg-start text-center">
+                            <h4 className="mb-4">Presupuesto</h4>
                         </div>
                     </div>
                     <div className="row">
