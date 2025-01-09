@@ -6,6 +6,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --font-size-base: 16px;
+  --font-size-heading: 2em;
+  --font-size-paragraph: 1em;
+
 }
 
 @media (prefers-color-scheme: light) {
@@ -13,6 +18,26 @@
     color: #213547;
     background-color: #ffffff;
   }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --font-size-base: 10px;
+    --font-size-heading: 1.5em;
+    --font-size-paragraph: 0.875em;
+  }
+}
+
+body {
+  font-size: var(--font-size-base);
+}
+
+h1 {
+  font-size: var(--font-size-heading);
+}
+
+p {
+  font-size: var(--font-size-paragraph);
 }
 
 .bg-savings-exp {

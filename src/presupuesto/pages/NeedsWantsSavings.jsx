@@ -5,6 +5,7 @@ import { ExpensesModal } from "../components/ExpensesModal"
 import { deleteExpenseNeeds, deleteExpenseWants } from "../../redux/budgetSlice";
 import { useState } from "react";
 import { formatNumber } from "../utils";
+import { SavingsComponent } from "../components/SavingsComponent";
 
 export const NeedsWantsSavings = () => {
 
@@ -100,6 +101,7 @@ export const NeedsWantsSavings = () => {
 
     return (
         <div className="container mb-5 mb-md-3">
+            {budget === "savings" ? <SavingsComponent /> : <>
             <div className="row">
                 <div className="col-12">
                     <div className="row">
@@ -133,7 +135,7 @@ export const NeedsWantsSavings = () => {
                 </div>
                 <div className="col-12 col-md-6">
                     {expenses.length <= 0 ?
-                        <div className="card text-center h-100 bg-total-all-exp">
+                        <div className="card text-center h-100 bg-total-all-exp opacity-50">
                             <div className="card-body">
                                 <i className="bi bi-list-ul rem10-text text-light"></i>
                                 <p>No se han añadido gastos...</p>
@@ -166,6 +168,7 @@ export const NeedsWantsSavings = () => {
                 </div>
             </div>
             <ExpensesModal expenses={budget} year={year} month={month} expenseData={expenseData} />
+            </>}
         </div>
     )
 }
